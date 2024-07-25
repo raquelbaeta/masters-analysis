@@ -15,9 +15,7 @@ print(data)
 data <- data %>%
   rowwise() %>%
   mutate(
-    mean_WGI = mean(
-      c(CC.EST, GE.EST, RQ.EST, RL.EST, VA.EST, PV.EST), 
-      na.rm = TRUE))
+    mean_WGI = mean(c(CC.EST, GE.EST, RQ.EST, RL.EST, VA.EST, PV.EST), na.rm = TRUE))
 
 # Intervals and labels
 data$year_interval_3yr <- cut(
@@ -58,8 +56,8 @@ governance_data_time_series <- data %>%
   )
 
 # Filter and write CSV files for different regions
-regions <- c("East Asia & Pacific", "Europe & Central Asia", "Latin America & Caribbean", 
-             "Middle East & North Africa", "North America", "South Asia", "Sub-Saharan Africa")
+regions <- c("East Asia & Pacific", "Europe & Central Asia", "Latin America & Caribbean", "Middle East & North Africa", "North America", 
+             "South Asia", "Sub-Saharan Africa")
 
 for (region in regions) {
   filtered_data <- filter(
