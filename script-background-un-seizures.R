@@ -16,7 +16,8 @@ print(data)
 
 # Group data
 results <- data %>%
-  group_by(region, code, country, any_UN, UN1961, UN1971, UN1988) %>%
+  group_by(
+    region, code, country, any_UN, UN1961, UN1971, UN1988) %>%
   summarize(
     total_seizures = sum(seizures), 
     mean_seizures = mean(seizures))
@@ -96,8 +97,8 @@ print(paste("Countries with '1' in UN1988:", count_one_1988))
 print(paste("Unique countries with '1' in UN1988:", count_one_countries_1988))
 
 # Summary of seizures by region
-regions <- c("East Asia & Pacific", "Europe & Central Asia", "Latin America & Caribbean",
-             "Middle East & North Africa", "North America", "South Asia", "Sub-Saharan Africa")
+regions <- c("East Asia & Pacific", "Europe & Central Asia", "Latin America & Caribbean", "Middle East & North Africa", 
+             "North America", "South Asia", "Sub-Saharan Africa")
 
 for (region in regions) {
   filtered_data <- data %>% filter(region == region)
@@ -105,9 +106,11 @@ for (region in regions) {
   print(summary(filtered_data$seizures))
   
   commitment_summary <- filtered_data %>%
-    group_by(region, code, country, any_UN, UN1961, UN1971, UN1988) %>%
-    summarize(total_seizures = sum(seizures),
-              mean_seizures = mean(seizures))
+    group_by(
+      region, code, country, any_UN, UN1961, UN1971, UN1988) %>%
+    summarize(
+      total_seizures = sum(seizures),
+      mean_seizures = mean(seizures))
   print(commitment_summary)
   
   # Count and list of countries by any_UN value
