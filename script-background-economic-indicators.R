@@ -19,8 +19,7 @@ data$year_interval_3yr <- cut(
   data$year, 
   breaks = seq(1996, 2019, by = 3), 
   include.lowest = TRUE, 
-  labels = c("1996-1998", "1999-2001", "2002-2004", "2005-2007", "2008-2010", 
-             "2011-2013", "2014-2016")
+  labels = c("1996-1998", "1999-2001", "2002-2004", "2005-2007", "2008-2010", "2011-2013", "2014-2016")
 )
 
 # Group data by region, country, and UN commitment
@@ -39,7 +38,8 @@ print(economic_results <- data %>%
 
 # Time series analysis by year interval
 economic_data <- data %>%
-  group_by(region, year_interval_3yr) %>%
+  group_by(
+    region, year_interval_3yr) %>%
   summarize(
     mean_seizures = mean(seizures, na.rm = TRUE),
     mean_log_adjusted_gdp = mean(log_adjusted_gdp, na.rm = TRUE),
@@ -60,8 +60,8 @@ print(economic_region_data <- data %>%
         ))
 
 # Filter data by region and write CSV files
-regions <- c("East Asia & Pacific", "Europe & Central Asia", "Latin America & Caribbean",
-             "Middle East & North Africa", "North America", "South Asia", "Sub-Saharan Africa")
+regions <- c("East Asia & Pacific", "Europe & Central Asia", "Latin America & Caribbean", "Middle East & North Africa", 
+             "North America", "South Asia", "Sub-Saharan Africa")
 
 for (region in regions) {
   filtered_data <- filter(economic_data, region == region)
