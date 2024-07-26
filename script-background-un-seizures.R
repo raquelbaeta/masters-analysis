@@ -7,9 +7,6 @@
 # Set working directory
 setwd("~/Desktop/working-sessions/regression")
 
-# Load required libraries
-library(c(readr, dplyr))
-
 # Load data
 data <- read_csv("~/Desktop/working-sessions/cleaning_data/cleaned_data.csv")
 print(data)
