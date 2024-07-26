@@ -8,11 +8,7 @@ This repository contains R scripts for performing regression analysis and data p
 
 To run the scripts, you need to have R installed on your system. Additionally, you need to install the required R packages. You can do this by running the installation commands provided below.
 
-Install Packages
-
 install.packages(c("readr", "tidyverse", "dplyr", "ggplot2", "lme4", "ggeffects", "stargazer", "gridExtra"))
-
-Load libraries
 
 library(readr, tidyverse, dplyr, ggplot2, lme4, ggeffects, stargazer, gridExtra)
 
