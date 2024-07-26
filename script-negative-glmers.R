@@ -80,7 +80,8 @@ model_glmer.GE <- glmer(
   any_seizures ~ any_UN +
     mean_log_adjusted_gdp_cap + mean_log_gdp +
     mean_milex_gdp + mean_trade_ratio + mean_GE.EST + 
-    (1 | region) + (1 | year_interval_3yr),
+  (1 | region) + 
+  (1 | year_interval_3yr),
   data = grouped_data_3yr_binary,
   family = binomial
 )
@@ -111,17 +112,16 @@ plot_obj_GE <- plot_obj_GE +
 print(plot_obj_GE)
 
 # Save the plot as a PDF/PNG
-ggsave("predicted_probabilities_seizures_ge_plot.pdf", plot = plot_obj_GE, 
-       width = 8, height = 6)
-ggsave("predicted_probabilities_seizures_ge_plot.png", plot = plot_obj_GE, 
-       width = 8, height = 6)
+ggsave("predicted_probabilities_seizures_ge_plot.pdf", plot = plot_obj_GE, width = 8, height = 6)
+ggsave("predicted_probabilities_seizures_ge_plot.png", plot = plot_obj_GE, width = 8, height = 6)
 
 # Model for "any seizures" and "Rule of Law"
 model_glmer.RL <- glmer(
   any_seizures ~ any_UN +
     mean_log_adjusted_gdp_cap + mean_log_gdp +
     mean_milex_gdp + mean_trade_ratio + mean_RL.EST + 
-    (1 | region) + (1 | year_interval_3yr),
+  (1 | region) + 
+  (1 | year_interval_3yr),
   data = grouped_data_3yr_binary,
   family = binomial
 )
@@ -152,17 +152,16 @@ plot_obj_RL <- plot_obj_RL +
 print(plot_obj_RL)
 
 # Save the plot as a PDF/PNG
-ggsave("predicted_probabilities_seizures_rl_plot.pdf", plot = plot_obj_RL, 
-       width = 8, height = 6)
-ggsave("predicted_probabilities_seizures_rl_plot.png", plot = plot_obj_RL, 
-       width = 8, height = 6)
+ggsave("predicted_probabilities_seizures_rl_plot.pdf", plot = plot_obj_RL, width = 8, height = 6)
+ggsave("predicted_probabilities_seizures_rl_plot.png", plot = plot_obj_RL, width = 8, height = 6)
 
 # Model for "any seizures" and "PV"
 model_glmer.PV <- glmer(
   any_seizures ~ any_UN +
     mean_log_adjusted_gdp_cap + mean_log_gdp +
     mean_milex_gdp + mean_trade_ratio + mean_PV.EST + 
-    (1 | region) + (1 | year_interval_3yr),
+  (1 | region) + 
+  (1 | year_interval_3yr),
   data = grouped_data_3yr_binary,
   family = binomial
 )
@@ -193,10 +192,8 @@ plot_obj_PV <- plot_obj_PV +
 print(plot_obj_PV)
 
 # Save the plot as a PDF/PNG
-ggsave("predicted_probabilities_seizures_pv_plot.pdf", plot = plot_obj_PV, 
-       width = 8, height = 6)
-ggsave("predicted_probabilities_seizures_pv_plot.png", plot = plot_obj_PV, 
-       width = 8, height = 6)
+ggsave("predicted_probabilities_seizures_pv_plot.pdf", plot = plot_obj_PV, width = 8, height = 6)
+ggsave("predicted_probabilities_seizures_pv_plot.png", plot = plot_obj_PV, width = 8, height = 6)
 
 # Combine model plots
 grid_arrangement_log_reg_rand_eff <- arrangeGrob(
@@ -208,10 +205,8 @@ grid_arrangement_log_reg_rand_eff <- arrangeGrob(
 print(grid_arrangement_log_reg_rand_eff)
 
 # Save the combined plot as a PDF/PNG
-ggsave("grid_arrangement_log_reg_rand_eff.pdf", 
-       plot = grid_arrangement_log_reg_rand_eff, width = 12, height = 8)
-ggsave("grid_arrangement_log_reg_rand_eff.png", 
-       plot = grid_arrangement_log_reg_rand_eff, width = 12, height = 8)
+ggsave("grid_arrangement_log_reg_rand_eff.pdf", plot = grid_arrangement_log_reg_rand_eff, width = 12, height = 8)
+ggsave("grid_arrangement_log_reg_rand_eff.png", plot = grid_arrangement_log_reg_rand_eff, width = 12, height = 8)
 
 #
 # Model 2: log(mean_seizures)
@@ -254,7 +249,7 @@ print(any_duplicates)
 #
 
 # Filter out "0"
-grouped_data_3yr_mean_only <- grouped_data_3yr_mean %>%
+grouped_data_3yr_mean <- grouped_data_3yr_mean %>%
   filter(mean_seizures > 0)
 
 # Save data set as a .rds
@@ -268,9 +263,10 @@ saveRDS(grouped_data_3yr_mean, "~/Desktop/working-sessions/models/grouped_data_3
 model_lmm.GE <- lmer(
   log(mean_seizures) ~ any_UN +
     mean_log_adjusted_gdp_cap + mean_log_gdp +
-    mean_milex_gdp + mean_trade_ratio +
-    mean_GE.EST + (1 | region) + (1 | year_interval_3yr),
-  data = grouped_data_3yr_mean_only
+    mean_milex_gdp + mean_trade_ratio + mean_GE.EST + 
+  (1 | region) + 
+  (1 | year_interval_3yr),
+  data = grouped_data_3yr_mean
 )
 
 # Print
@@ -299,18 +295,17 @@ plot_obj_lmm_GE <- plot_obj_lmm_GE +
 print(plot_obj_lmm_GE)
 
 # Save the plot as a PDF/PNG
-ggsave("predicted_mean_seizures_ge_plot.pdf", 
-       plot = plot_obj_lmm_GE, width = 8, height = 6)
-ggsave("predicted_mean_seizures_ge_plot.png", 
-       plot = plot_obj_lmm_GE, width = 8, height = 6)
+ggsave("predicted_mean_seizures_ge_plot.pdf", plot = plot_obj_lmm_GE, width = 8, height = 6)
+ggsave("predicted_mean_seizures_ge_plot.png", plot = plot_obj_lmm_GE, width = 8, height = 6)
 
 # Model for mean_seizures and RL
 model_lmm.RL <- lmer(
   log(mean_seizures) ~ any_UN +
     mean_log_adjusted_gdp_cap + mean_log_gdp +
     mean_milex_gdp + mean_trade_ratio + mean_RL.EST + 
-    (1 | region) + (1 | year_interval_3yr),
-  data = grouped_data_3yr_mean_only
+  (1 | region) + 
+  (1 | year_interval_3yr),
+  data = grouped_data_3yr_mean
 )
 
 # Print
@@ -349,8 +344,9 @@ model_lmm.PV <- lmer(
   log(mean_seizures) ~ any_UN +
     mean_log_adjusted_gdp_cap + mean_log_gdp +
     mean_milex_gdp + mean_trade_ratio + mean_PV.EST + 
-    (1 | region) + (1 | year_interval_3yr),
-  data = grouped_data_3yr_mean_only
+  (1 | region) + 
+  (1 | year_interval_3yr),
+  data = grouped_data_3yr_mean
 )
 
 # Print
@@ -379,10 +375,8 @@ plot_obj_lmm_PV <- plot_obj_lmm_PV +
 print(plot_obj_lmm_PV)
 
 # Save the plot as a PDF/PNG
-ggsave("predicted_mean_seizures_pv_plot.pdf", plot = plot_obj_lmm_PV, 
-       width = 8, height = 6)
-ggsave("predicted_mean_seizures_pv_plot.png", plot = plot_obj_lmm_PV, 
-       width = 8, height = 6)
+ggsave("predicted_mean_seizures_pv_plot.pdf", plot = plot_obj_lmm_PV, width = 8, height = 6)
+ggsave("predicted_mean_seizures_pv_plot.png", plot = plot_obj_lmm_PV, width = 8, height = 6)
 
 # Combine model plots
 grid_arrangement_lmm_log_seizures <- arrangeGrob(
@@ -394,26 +388,26 @@ grid_arrangement_lmm_log_seizures <- arrangeGrob(
 print(grid_arrangement_lmm_log_seizures)
 
 # Save the combined plot as a PDF/PNG
-ggsave("grid_arrangement_lmm_log_seizures.pdf", 
-       plot = grid_arrangement_lmm_log_seizures, width = 12, height = 8)
-ggsave("grid_arrangement_lmm_log_seizures.png", 
-       plot = grid_arrangement_lmm_log_seizures, width = 12, height = 8)
+ggsave("grid_arrangement_lmm_log_seizures.pdf", plot = grid_arrangement_lmm_log_seizures, width = 12, height = 8)
+ggsave("grid_arrangement_lmm_log_seizures.png", plot = grid_arrangement_lmm_log_seizures, width = 12, height = 8)
 
 #
 # Model summaries
 #
 
 # Logistic regression model summary
-stargazer(model_glmer.GE, model_glmer.RL, model_glmer.PV, 
-          title = "Logistic Regression Models", 
-          type = "text", 
-          out = "logistic_regression_models_summary.txt")
+stargazer(
+  model_glmer.GE, model_glmer.RL, model_glmer.PV, 
+  title = "Logistic Regression Models", 
+  type = "text", 
+  out = "logistic_regression_models_summary.txt")
 
 # Linear mixed effects models summary
-stargazer(model_lmm.GE, model_lmm.RL, model_lmm.PV, 
-          title = "Linear Mixed Effects Models", 
-          type = "text", 
-          out = "linear_mixed_effects_models_summary.txt")
+stargazer(
+  model_lmm.GE, model_lmm.RL, model_lmm.PV, 
+  title = "Linear Mixed Effects Models", 
+  type = "text", 
+  out = "linear_mixed_effects_models_summary.txt")
 
 #
 # Check residuals for LMMs
