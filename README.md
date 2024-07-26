@@ -2,7 +2,15 @@
 
 ## Overview
 
-This repository contains R scripts for performing regression analysis and data processing on a dataset related to seizures and various economic and governance indicators. The analysis includes both logistic regression models and linear regression models, using mixed-effects models where appropriate.
+This repository contains R scripts designed for comprehensive regression analysis and data processing related to seizures and various economic and governance indicators. The project utilizes both logistic and linear mixed-effects models to analyze the relationship between seizure occurrences and factors such as UN commitment, governance effectiveness, and political violence. Key features include:
+
+Data Aggregation: Grouping data into 3-year intervals and performing initial cleaning.
+
+Regression Models: Building and evaluating logistic regression models with random effects for binary outcomes, and linear mixed-effects models for continuous outcomes.
+
+Visualisations: Generating and saving plots of predicted probabilities and model summaries for easy interpretation.
+
+Model Comparisons: Combining plots and summarizing results for different models to facilitate comparison.
 
 ## Installation
 
