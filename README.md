@@ -38,10 +38,15 @@ A linear regression model analysing the log of mean seizures across 3-year inter
 The results include:
 
 Summary statistics of the models.
+
 Marginal effects and predicted probabilities.
+
 Visualisations of the predicted probabilities.
+
 Combined plots for easy comparison of different models.
+
 All visualisations are saved as PDF and PNG files.
+
 
 ## Contributing
 
