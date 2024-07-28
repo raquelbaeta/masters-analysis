@@ -8,7 +8,7 @@
 setwd("~/Desktop/working-sessions/regression")
 
 # Load required libraries
-library(readr, MASS, car, lmtest, sandwich, lmtest)
+library(readr, MASS, car, lmtest, sandwich)
 
 # Load the dataset
 data <- read_csv("~/Desktop/working-sessions/cleaning_data/cleaned_data.csv")
